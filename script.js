@@ -1,10 +1,12 @@
 // this function just create game class and property that needed
+// monetize sync 172
+
 const startGame = () => {
   const gameData = {};
   gameData.items = items;
   gameData.reelCount = 3;
   gameData.spinTime = 4000;
-  gameData.startScore = 100;
+  gameData.startScore = credits;
   gameData.mode = items.modes.random;
   gameData.dataPayTable = dataPayTable;
   gameData.redLine = document.getElementById("red-line");
@@ -171,6 +173,7 @@ class GameManager {
     this.slot.spin(result);
     setTimeout(() => {
       const scoreSpin = this.calculateScore(this.get3Lines(result));
+      syncCredits(scoreSpin);
       this.updateScore(scoreSpin);
       this.toggleSpining(false);
     }, this.spinTime);
